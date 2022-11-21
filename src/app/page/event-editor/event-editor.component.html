@@ -1,0 +1,88 @@
+<form #eventForm="ngForm" (ngSubmit)="onUpdate(eventForm)">
+  <h3 class="text-center mb-4">Event Editor</h3>
+
+  <div hidden class="form-group mb-1">
+    <label for="name">Id</label>
+    <input
+      [(ngModel)]="event.id"
+      id="Id"
+      type="text"
+      name="id"
+      placeholder="id"
+      class="form-control"
+      readonly
+    />
+  </div>
+
+  <div class="form-group mb-1">
+    <label for="name">Name</label>
+    <input
+      [(ngModel)]="event.name"
+      id="name"
+      type="text"
+      name="name"
+      placeholder="name"
+      class="form-control"
+      required
+      pattern=".{8,}"
+    />
+  </div>
+  <div class="error-message" *ngIf="eventForm.controls['name']?.invalid">
+    Input 'name' must be set and at least 8 chars long.
+  </div>
+  <div class="form-group mb-1">
+    <label for="date">Date</label>
+    <input
+      [(ngModel)]="event.date"
+      id="date"
+      type="text"
+      name="date"
+      placeholder="date"
+      class="form-control"
+      required
+    />
+  </div>
+  <div class="error-message" *ngIf="eventForm.controls['date']?.invalid">
+    Input 'date' must be set.
+  </div>
+
+  <div class="form-group mb-1">
+    <label for="time">Time</label>
+    <input
+      id="time"
+      [(ngModel)]="event.time"
+      type="text"
+      name="time"
+      placeholder="time"
+      class="form-control"
+      required
+    />
+  </div>
+  <div class="error-message" *ngIf="eventForm.controls['time']?.invalid">
+    Input 'time' must be set.
+  </div>
+
+  <div class="form-group mb-1">
+    <label for="location">Location</label>
+    <input
+      [(ngModel)]="event.location"
+      id="location"
+      type="text"
+      name="location"
+      placeholder="location"
+      class="form-control"
+      required
+    />
+  </div>
+  <div class="error-message" *ngIf="eventForm.controls['location']?.invalid">
+    Input 'location' must be set.
+  </div>
+
+  <button
+    [disabled]="eventForm.form.invalid"
+    type="submit"
+    class="btn btn-dark btn-block mb-4"
+  >
+    Save
+  </button>
+</form>
